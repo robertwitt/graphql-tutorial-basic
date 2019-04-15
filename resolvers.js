@@ -20,8 +20,8 @@ const authors = [{
 
 const resolvers = {
   Query: {
-    authors: () => authors,
-    author: (root, {id}) => authors.find(author => author.id === id)
+    authors: (root, {age}) => authorModel.find({age: age}),
+    author: (root, {id}) => authorModel.findOne({id: id})
   },
   Mutation: {
     addAuthor: (root, {name, age, books}) => {
@@ -31,7 +31,9 @@ const resolvers = {
         books: books
       });
       return author.save();
-    }
+    },
+    deleteAuthor: (root, {id}) => authorModel.findOneAndRemove({id: id}),
+    updateAuthor: (root, {id, name}) => authorModel.findOneAndUpdate({id: id}, {name: name})
   }
 };
 
