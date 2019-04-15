@@ -8,14 +8,14 @@ import resolvers from './resolvers.js';
 // }`;
 
 const typeDefs = `type Author {
-  id: Int
+  id: String
   age: Int
   name: String
   books: [String]
 }
   type Query {
     authors: [Author]
-    author(id: Int): Author
+    author(id: String): Author
   }
 `;
 
